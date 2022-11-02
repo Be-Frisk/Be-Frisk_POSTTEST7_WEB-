@@ -1,0 +1,52 @@
+<?php
+session_start();
+if(isset($_POST['regisSubmit'])){
+    $_SESSION['regisSubmit'] = $_POST['regisSubmit'];
+    $_SESSION['regisUsername'] = $_POST['regisUsername'];
+    $_SESSION['regisPassword'] = $_POST['regisPassword'];
+    $_SESSION['konfirPassword '] = $_POST['konfirPassword'];
+    $_SESSION['email'] = $_POST['email'];
+    $_SESSION['no_telp'] = $_POST['notelp'];
+    $_SESSION['birthday'] = $_POST['birthday'];
+    $_SESSION['gender'] = $_POST['gender'];
+    
+}
+var_dump($_SESSION);
+var_dump($_GET);    
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>LOGIN to GAMARA</h1>
+    <form action="index.php" method="get">
+        <label for="username">Username</label> <br>
+        <input type="text" name="username" id="username" placeholder="Username"> <br>
+        <label for="password">Password</label> <br>
+        <input type="password" name="password" id="password" placeholder="Password"> <br>
+        <input type="submit" name="submit" value="submit">
+        <p>Belum punya akun? <a href="register.php">Register</a></p>
+        <a href="profile.php">Profile</a></p>
+    </form>
+   
+    <?php
+    //Kodingan php disini - posisinya bebas sebenarnya
+    //klu disimpan di atas berarti dia ngecek dulu ada error atau ndanya
+    if(isset($_GET['submit']) && isset($_SESSION['regisSubmit'])){
+        if($_GET['username'] == $_SESSION['regisUsername']){
+            if($_GET['password'] == $_SESSION['regisPassword']){
+                echo "<h1>Login Berhasil!!</h1>";
+            }
+        }
+    }
+    ?>
+   
+</body>
+</html>
